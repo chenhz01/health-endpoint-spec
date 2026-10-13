@@ -4,6 +4,8 @@ Liveness and readiness are different questions — "am I up" must not consult th
 
 As of 2026-10-13, no direct equivalent found as of 2026-10-13: frameworks ship health-check *implementations* (Spring actuator, K8s probes), but searches across GitHub (194 queries) and the web found no standalone spec validator for liveness/readiness semantic separation.
 
+<p align="center"><img src="docs/demo.gif" alt="demo" width="720"></p>
+
 ## Problem
 
 A readiness check that pings the database makes every DB hiccup restart every pod — a self-inflicted outage loop. A liveness endpoint that exposes dependency names leaks topology. A 200 response with `"status": "down"` in the body lies to load balancers. Each bug is trivially visible in a *declaration*; none is visible in a running system until the cascade.
